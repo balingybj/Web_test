@@ -1,0 +1,554 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ÉÏÊö3¸ömeta±êÇ©*±ØÐë*·ÅÔÚ×îÇ°Ãæ£¬ÈÎºÎÆäËûÄÚÈÝ¶¼*±ØÐë*¸úËæÆäºó£¡ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/verify.js"></script>
+    <title>RRU Informations</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
+    <!--<link href="../css/patch.css" rel="stylesheet">-->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/theme-default.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/iconfont.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <img src="../img/logo.PNG">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid main">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="./main.html"><span class="glyphicon glyphicon-home"></span><span style="margin-left: 10px">Overview</span></a></li>
+            <li><a href="./set.html"><span class="glyphicon glyphicon-cog"></span><span style="margin-left: 10px">Setting</span></a></li>
+            <li><a href="./version.html"><span class="glyphicon glyphicon-exclamation-sign"></span><span style="margin-left: 10px">Version</span></a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+          <!--<h1 class="page-header">Antenna State</h1>-->
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-arrows-alt fa-lg"></i><span style="margin-left: 10px">Control</span></h4>
+            </div>        
+            <div class="panel-body">
+
+
+              <div class="tabbable">
+              <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#cell" data-target="#cell" data-toggle="tab"><strong>Cell</strong></a></li>
+                <li><a href="#pa" data-target="#pa" data-toggle="tab"><strong>Pa</strong></a></li>
+                <li><a href="#tgc" data-target="#tgc" data-toggle="tab"><strong>Tgc</strong></a></li>
+              </ul>
+
+              
+              <div class="tab-content">
+                <div class="tab-pane active" id="cell">
+                <div class="col-md-4 col-xs-6 col-sm-4">
+                  <form class="form-horizontal" id="cell_cfg" method="post" value="0x01" onsubmit="return checkForm()">
+                  <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label">Operation</label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="operate">
+                            <option value="0">Setup</option>
+                            <option value="2">Delete</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label">Band Width</label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="bandWidth">
+                            <option value="5">5M</option>
+                            <option value="10">10M</option>
+                            <option value="15">15M</option>
+                            <option value="20">20M</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label">Channel</label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="channel">
+                            <option value="0xfffe">ANT0</option>
+                            <option value="0xfffd">ANT1</option>
+                            <option value="0xfffc">ANT0+ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label">Source</label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="source">
+                            <option value=3>Cpri</option>
+                            <option value=0>Single Tone</option>
+                            <option value=1>PN</option>
+                            <option value=2>Direct Current</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01">Power</label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-xlarge" style="height: 30px" name="power">
+                          <p class="help-block">(0~47)</p>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01">Freq</label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-xlarge" style="height: 30px" name="freq">
+                          <p class="help-block">unit:100KHz</p>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                      </div>
+                  </fieldset>
+                  </form> 
+                </div>
+                      
+                </div>
+                <div class="tab-pane" id="pa">
+                <div class="panel">
+                  <div class="panel-body">
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-success" onclick="pa0SwitchOn()">Pa0SwitchOn</button>
+                  </div>
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-danger" onclick="pa0SwitchOff()">Pa0SwitchOff</button>
+                  </div>
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-success" onclick="pa1SwitchOn()">Pa1SwitchOn</button>
+                  </div>                  
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-danger" onclick="pa1SwitchOff()">Pa1SwitchOff</button>
+                  </div>
+                  </div>
+                  <div class="panel-body">
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-success" onclick="pa0DrainSwitchOn()">pa0DrainSwitchOn</button>
+                  </div>
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-danger" onclick="pa0DrainSwitchOff()">pa0DrainSwitchOff</button>
+                  </div>
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-success" onclick="pa1DrainSwitchOn()">pa1DrainSwitchOn</button>
+                  </div>
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                    <button type="button" class="btn btn-lg btn-danger" onclick="pa1DrainSwitchOff()">pa1DrainSwitchOff</button>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 col-xs-6 col-sm-4">
+                  <form class="form-horizontal" id="biasVolt" method="post" value="0x01" onsubmit="return checkDrainForm()">
+                      <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>Channel</strong></label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="channel">
+                            <option value="0">ANT0</option>
+                            <option value="1">ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>DrainType</strong></label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="source">
+                            <option value=0>28V</option>
+                            <option value=1>48v</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01"><strong>Volt</strong></label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-xlarge" style="height: 30px" name="volt">
+                          <span class="add-on">mV</span>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">SetDrainVolt</button>
+                        </div>
+                      </div>
+                      </fieldset>
+                    </form>
+                </div>
+                <div class="col-md-6 col-xs-6 col-sm-4">
+                    <form class="form-horizontal" id="biasVolt" method="post" value="0x01" onsubmit="return checkBiasForm()">
+                      <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>Channel</strong></label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="channel">
+                            <option value="0">ANT0</option>
+                            <option value="1">ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>BiasIndex</strong></label>
+                        <div class="controls">
+                          <select class="input-xlarge" name="source">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01"><strong>Volt</strong></label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-xlarge" style="height: 30px" name="volt">
+                          <span class="add-on">mV</span>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">SetBiasVolt</button>
+                        </div>
+                      </div>
+                      </fieldset>
+                    </form>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tgc">
+                  <div class="col-md-3 col-xs-6 col-sm-4">
+                  <form class="form-horizontal" id="att" method="post" value="0x01" onsubmit="return checkAttForm()">
+                      <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>Channel</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="channel">
+                            <option value="0">ANT0</option>
+                            <option value="1">ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>CarrierNum</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="carriNum">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01"><strong>Datt</strong></label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-medium" style="height: 30px" name="datt">
+                          <span class="add-on">0.01dB</span>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">SetCarriDatt</button>
+                        </div>
+                      </div>
+                      </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-xs-6 col-sm-4">
+                  <form class="form-horizontal" id="nco" method="post" value="0x01" onsubmit="return checkNcoForm()">
+                      <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>Channel</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="channel">
+                            <option value="0">ANT0</option>
+                            <option value="1">ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>CarrierNum</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="carriNum">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01"><strong>Nco</strong></label>
+                        <div class="controls">
+                          <input type="text" placeholder="" class="input-medium" style="height: 30px" name="nco">
+                          <span class="add-on">KHz</span>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">SetCarriNco</button>
+                        </div>
+                      </div>
+                      </fieldset>
+                    </form>
+                </div>
+
+                <div class="col-md-3 col-xs-6 col-sm-4">
+                  <form class="form-horizontal" id="tgcSwitch" method="post" value="0x01" onsubmit="return checkTgcSwitchForm()">
+                      <fieldset>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>Channel</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="channel">
+                            <option value="0">ANT0</option>
+                            <option value="1">ANT1</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Select Basic -->
+                        <label class="control-label"><strong>CarrierNum</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="carriNum">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label"><strong>Switch</strong></label>
+                        <div class="controls">
+                          <select class="input-medium" name="switch">
+                            <option value=0>ON</option>
+                            <option value=1>OFF</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="controls">
+                          <button class="btn btn-success" type="submit">SetCarriSwitch</button>
+                        </div>
+                      </div>
+                      </fieldset>
+                    </form>
+                </div>
+
+                </div>
+
+                </div>
+              </div>
+              </div>        
+            </div>
+          </div>
+          <div class="col-md-12 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-desktop fa-lg"></i><span style="margin-left: 10px">Modules</span></h4>
+            </div>        
+            <div class="panel-body">
+                          <div class="row state-overview">
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./tgc.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-download"></i></div>
+                     <div class="state-value" id="tgc_value">
+                       <div class="title">TGC</div>
+                       <div class="value0 value" ></div>
+                       <div class="value1 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./rgc.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-upload"></i></div>
+                     <div class="state-value" id="rgc_value">
+                       <div class="title">RGC</div>
+                       <div class="value0 value"></div>
+                       <div class="value1 value"></div>
+                       <div class="value2 value"></div>
+                       <div class="value3 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./dpd.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-briefcase"></i></div>
+                     <div class="state-value" id="dpd_value">
+                       <div class="title">DPD</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./alarm.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-bell"></i></div>
+                     <div class="state-value" id="alarm_value">
+                       <div class="title">ALARM</div>
+                       <div class="value value0"></div>
+                       <div class="value value1"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./log.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-list-alt"></i></div>
+                     <div class="state-value" id="log_value">
+                       <div class="title">LOG</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./control.html">
+                     <div class="ibox red">
+                     <div class="symbol"><i class="glyphicon glyphicon-wrench"></i></div>
+                     <div class="state-value" id="control_value">
+                       <div class="title">CONTROL</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+               </div>
+            </div>
+          </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/Constant.js"></script>
+    <script src="../js/String.js"></script>
+    <script src="../js/Request.js"></script>
+    <script src="../js/Sidebar.js"></script>
+    <script src="../js/Control.js"></script>
+    <script type="text/javascript">
+      
+    $('#myTab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    })
+    $('a[data-toggle="tab"]').on('shown', function(e){
+      e.target
+      e.relatedtarget
+    })
+    </script>
+  </body>
+</html>

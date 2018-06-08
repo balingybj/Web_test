@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html dir="ltr" lang="en-US">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>RRU Information</title>
+  <link rel="shortcut icon" href="favicon.ico" >
+
+	<!--- CSS <link rel="stylesheet" href="style.css" type="text/css" />--->
+	
+
+
+	<!--- Javascript libraries (jQuery and Selectivizr) used for the custom checkbox --->
+
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="selectivizr.js"></script>
+		<noscript><link rel="stylesheet" href="fallback.css" /></noscript>
+	<![endif]-->
+	<link href="./css/login.css" rel="stylesheet">
+	<link href="./css/fallback.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div id="container">
+			<form name="LOGIN" id="login" method="post" value="0x03">
+				<div class="login">LOGIN</div>
+				<div class="username-field">
+					<input type="text" name="username" placeholder="username" />
+				</div>
+				<div class="password-field">
+					<input type="password" name="password" placeholder="password" />
+				</div>
+				<input type="button" id="submit" onclick="checkForm()" value="GO"></input> 
+			</form>
+		</div>
+		<div id="footer">
+			RRU Information <a href="http://www.cssmoban.com/" target="_blank" title="">系统平台中心</a>
+		</div>
+
+		<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="./js/selectivizr.js"></script>
+    <script src="./js/Request.js"></script>
+    <script type="text/javascript">
+      var req = {data:{},  bindid:"", cur:0, refresh:1, success:login, error:undefined, extdata:undefined}
+      
+      function checkForm(){
+
+        req.data["cmd"] = parseInt($("#login").attr("value"));
+        req.data["name"] = LOGIN.username.value;
+        req.data["pwd"] = LOGIN.password.value;
+        if(req.data["name"] == "" || req.data["name"] == null){
+          alert("please input your username!");
+          LOGIN.username.focus();
+          return false;
+        }
+        if(req.data["pwd"] == "" || req.data["pwd"] == null){
+          alert("please input your password!");
+          LOGIN.password.focus();
+          return false;
+        }
+         request.requestData(req);
+      }
+
+
+      function login(data){
+        console.log("IIIIIIII"+ data + "PPPPPPPPPPP");
+        ret = parseInt(data)
+        if(ret === 1){
+          self.location = './web/main.html';
+        }
+        else{
+          alert("username or password is incorrect!");
+          LOGIN.password.focus();
+        }
+      }
+
+      $('#login').keyup(function(event){
+        if(event.keyCode == 13){
+          $('#submit').trigger("click");
+        }
+      });
+
+    </script>
+	</body>
+</html>

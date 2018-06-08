@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ÉÏÊö3¸ömeta±êÇ©*±ØÐë*·ÅÔÚ×îÇ°Ãæ£¬ÈÎºÎÆäËûÄÚÈÝ¶¼*±ØÐë*¸úËæÆäºó£¡ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/verify.js"></script>
+    <title>RRU Informations</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
+    <!--<link href="../css/patch.css" rel="stylesheet">-->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/theme-default.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/iconfont.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <img src="../img/logo.PNG">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid main">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="./main.html"><span class="glyphicon glyphicon-home"></span><span style="margin-left: 10px">Overview</span></a></li>
+            <li class="active"><a href="./set.html"><span class="glyphicon glyphicon-cog"></span><span style="margin-left: 10px">Setting</span></a></li>
+            <li><a href="./version.html"><span class="glyphicon glyphicon-exclamation-sign"></span><span style="margin-left: 10px">Version</span></a></li>
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+          <!--<h1 class="page-header">Antenna State</h1>-->
+          <div class="col-md-12 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-arrows-alt fa-lg"></i><span style="margin-left: 10px">Para Setting</span></h4>
+            </div>        
+            <div class="panel-body">
+
+              <div class="tabbable">
+              <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#alarmThresh" data-target="#alarmThresh" data-toggle="tab"><strong>Alarm Thresh</strong></a></li>
+                <li><a href="#test1" data-target="#test1" data-toggle="tab">Test1</a></li>
+                <li><a href="#test2" data-target="#test2" data-toggle="tab">Test2</a></li>
+              </ul>
+
+              
+              <div class="tab-content">
+                <div class="tab-pane active" id="alarmThresh">
+
+                <form id="alarm_thre" method="post" value="0x02" onsubmit="return checkForm()">
+                  <table class="table table-bordered" id='Muu' style="font-size:10px; line-height:10px">
+                  <thead>
+                  <tr style="height: 20px;">
+                    <th>name</th>
+                    <th>Thresh</th>
+                    <th>DisThresh</th>
+                    <th>Unit</th>
+                  </tr>
+                    
+                  </thead>
+                  <tbody id="threshValue">
+
+                  </tbody>
+                    
+                  </table>
+                  <button class="btn btn-success" type="submit">Submit</button>
+                </form>
+                </div>
+                <div class="tab-pane" id="test1">...</div>
+                <div class="tab-pane" id="test2">...</div>
+              </div>
+              </div>
+          
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/Constant.js"></script>
+    <script src="../js/Request.js"></script>
+    <script src="../js/Sidebar.js"></script>
+    <script src="../js/Set.js"></script>
+    <script type="text/javascript">
+    $('#myTab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    })
+    $('a[data-toggle="tab"]').on('shown', function(e){
+      e.target
+      e.relatedtarget
+    })
+    </script>
+  </body>
+</html>

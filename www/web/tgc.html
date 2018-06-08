@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ÉÏÊö3¸ömeta±êÇ©*±ØÐë*·ÅÔÚ×îÇ°Ãæ£¬ÈÎºÎÆäËûÄÚÈÝ¶¼*±ØÐë*¸úËæÆäºó£¡ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/verify.js"></script>
+    <title>RRU Informations</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/theme-default.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <img src="../img/logo.PNG">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid main">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="./main.html"><span class="glyphicon glyphicon-home"></span><span style="margin-left: 10px">Overview</span></a></li>
+            <li><a href="./set.html"><span class="glyphicon glyphicon-cog"></span><span style="margin-left: 10px">Setting</span></a></li>
+            <li><a href="./version.html"><span class="glyphicon glyphicon-exclamation-sign"></span><span style="margin-left: 10px">Version</span></a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+            <div class="col-md-6 col-xs-6 col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h4><i class="fa fa-line-chart fa-lg"></i><span style="margin-left: 10px">PA Voltage</span></h4>
+              </div>        
+              <div class="panel-body" id="pa-vol">
+                  
+
+
+              </div>
+            </div>
+            </div>   
+
+            <div class="col-md-6 col-xs-6 col-sm-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-line-chart fa-lg"></i><span style="margin-left: 10px">PA Current</span></h4>
+                </div>        
+                <div class="panel-body" id="pa-curr">
+                    
+
+
+                </div>
+              </div>
+            </div>           
+          </div>
+
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+            <div class="col-md-6 col-xs-6 col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h4><i class="fa fa-thermometer fa-lg"></i><span style="margin-left: 10px">Device Temperature</span></h4>
+              </div>        
+              <div class="panel-body" id="temp-chart">
+                  
+
+
+              </div>
+            </div>
+            </div>   
+
+            <div class="col-md-6 col-xs-6 col-sm-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-bolt fa-lg"></i><span style="margin-left: 10px">Power</span></h4>
+                </div>        
+                <div class="panel-body" id="pow-chart">
+                    
+
+
+                </div>
+              </div>
+            </div>           
+          </div>
+
+          <div class="col-md-6 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-rss fa-lg"></i><span style="margin-left: 10px">Carriers</span></h4>
+            </div>        
+            <div class="panel-body">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>CarrierNo.</th>
+                    <th>Power(dBm)</th>
+                    <th>Frequence(KHz)</th>
+                    <th>Nco(KHz)</th>
+                    <th>Datt(dB)</th>
+                  </tr>
+                </thead>
+                <tbody id="carrier_info">
+                  
+                </tbody>
+              </table>              
+            </div>
+          </div>
+          </div>
+
+          <div class="col-md-6 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-cog fa-lg fa-spin"></i><span style="margin-left: 10px">Att</span></h4>
+            </div>        
+            <div class="panel-body">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>Path</th>
+                    <th>PreDpd(dB)</th>
+                    <th>PostDpd(dB)</th>
+                    <th>TxAtt(dB)</th>
+                    <th>FbAtt(dB)</th>
+                  </tr>
+                </thead>
+                <tbody id="att_info">
+                <tr><td>ANT0</td><td></td><td></td><td></td><td></td></tr>
+                <tr><td>ANT1</td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+              </table>              
+            </div>
+          </div>
+          </div>
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-desktop fa-lg"></i><span style="margin-left: 10px">Modules</span></h4>
+            </div>        
+            <div class="panel-body">
+                          <div class="row state-overview">
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./tgc.html">
+                     <div class="ibox red">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-download"></i></div>
+                     <div class="state-value" id="tgc_value">
+                       <div class="title">TGC</div>
+                       <div class="value0 value" ></div>
+                       <div class="value1 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./rgc.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-upload"></i></div>
+                     <div class="state-value" id="rgc_value">
+                       <div class="title">RGC</div>
+                       <div class="value0 value"></div>
+                       <div class="value1 value"></div>
+                       <div class="value2 value"></div>
+                       <div class="value3 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./dpd.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-briefcase"></i></div>
+                     <div class="state-value" id="dpd_value">
+                       <div class="title">DPD</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./alarm.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-bell"></i></div>
+                     <div class="state-value" id="alarm_value">
+                       <div class="title">ALARM</div>
+                       <div class="value value0"></div>
+                       <div class="value value1"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./log.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-list-alt"></i></div>
+                     <div class="state-value" id="log_value">
+                       <div class="title">LOG</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./control.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-wrench"></i></div>
+                     <div class="state-value" id="alarm_value">
+                       <div class="title">CONTROL</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+               </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/highcharts.js"></script>
+    <script src="../js/Constant.js"></script>
+    <script src="../js/String.js"></script>
+    <script src="../js/Request.js"></script>
+    <script src="../js/Chart.js"></script>
+    <script src="../js/highcharts_theme.js"></script>
+    <script src="../js/Tgc.js"></script>
+    <script src="../js/Sidebar.js"></script>
+  </body>
+</html>

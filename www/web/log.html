@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- ÉÏÊö3¸ömeta±êÇ©*±ØÐë*·ÅÔÚ×îÇ°Ãæ£¬ÈÎºÎÆäËûÄÚÈÝ¶¼*±ØÐë*¸úËæÆäºó£¡ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/verify.js"></script>
+    <title>RRU Informations</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/theme-default.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <img src="../img/logo.PNG">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid main">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="./main.html"><span class="glyphicon glyphicon-home"></span><span style="margin-left: 10px">Overview</span></a></li>
+            <li><a href="./set.html"><span class="glyphicon glyphicon-cog"></span><span style="margin-left: 10px">Setting</span></a></li>
+            <li><a href="./version.html"><span class="glyphicon glyphicon-exclamation-sign"></span><span style="margin-left: 10px">Version</span></a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+
+          <div class="col-md-4 col-xs-6 col-sm-4">
+              <!-- Select Basic -->
+              <form class="form-horizontal" id="meas_data" method="post" onsubmit="return checkForm()">
+                <select class="input-xlarge" name="data_name">
+                  <option value="pa_temp">pa_temp</option>
+                  <option value="if_temp">if_temp</option>
+                  <option value="volt_psu">volt_psu</option>
+                  <option value="curr_psu">curr_psu</option>
+                  <option value="sub0_bias_volt1">sub0_bias_volt1</option>
+                  <option value="sub0_bias_volt2">sub0_bias_volt2</option>
+                  <option value="sub1_bias_volt1">sub1_bias_volt1</option>
+                  <option value="sub1_bias_volt2">sub1_bias_volt2</option>
+                  <option value="sub2_bias_volt1">sub2_bias_volt1</option>
+                  <option value="sub2_bias_volt2">sub2_bias_volt2</option>
+                  <option value="sub3_bias_volt1">sub2_bias_volt1</option>
+                  <option value="sub3_bias_volt2">sub2_bias_volt2</option>
+                  <option value="sub0_bias_curr1">sub0_bias_curr1</option>
+                  <option value="sub0_bias_curr2">sub0_bias_curr2</option>
+                  <option value="sub1_bias_curr1">sub1_bias_curr1</option>
+                  <option value="sub1_bias_curr2">sub1_bias_curr2</option>
+                  <option value="sub2_bias_curr1">sub2_bias_curr1</option>
+                  <option value="sub2_bias_curr2">sub2_bias_curr2</option>
+                  <option value="sub3_bias_curr1">sub2_bias_curr1</option>
+                  <option value="sub3_bias_curr2">sub2_bias_curr2</option>
+                  <option value="drain_volt_pa1">drain_volt_pa1</option>
+                  <option value="path_curr_pa1">path_curr_pa1</option>
+                  <option value="drain_volt_pa2">drain_volt_pa2</option>
+                  <option value="path_curr_pa2">path_curr_pa2</option>
+                  
+                </select>
+
+                <button class="btn btn-success" type="submit">Submit</button>
+              </form>
+          </div>
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+    
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h4><i class="fa fa-line-chart fa-lg"></i><span style="margin-left: 10px">LOG CHART</span></h4>
+              </div>        
+
+              <div class="panel-body" id="log-chart">
+                  
+
+
+              </div>
+            </div>         
+          </div>
+
+          <div class="col-md-12 col-xs-6 col-sm-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><i class="fa fa-desktop fa-lg"></i><span style="margin-left: 10px">Modules</span></h4>
+            </div>        
+            <div class="panel-body">
+                          <div class="row state-overview">
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./tgc.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-download"></i></div>
+                     <div class="state-value" id="tgc_value">
+                       <div class="title">TGC</div>
+                       <div class="value0 value" ></div>
+                       <div class="value1 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./rgc.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-cloud-upload"></i></div>
+                     <div class="state-value" id="rgc_value">
+                       <div class="title">RGC</div>
+                       <div class="value0 value"></div>
+                       <div class="value1 value"></div>
+                       <div class="value2 value"></div>
+                       <div class="value3 value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./dpd.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-briefcase"></i></div>
+                     <div class="state-value" id="dpd_value">
+                       <div class="title">DPD</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./alarm.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-bell"></i></div>
+                     <div class="state-value" id="alarm_value">
+                       <div class="title">ALARM</div>
+                       <div class="value value0"></div>
+                       <div class="value value1"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./log.html">
+                     <div class="ibox red">
+                     <div class="symbol"><i class="glyphicon glyphicon-list-alt"></i></div>
+                     <div class="state-value" id="log_value">
+                       <div class="title">LOG</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+                 <div class="col-md-4 col-xs-6 col-sm-4">
+                   <a href="./control.html">
+                     <div class="ibox blue">
+                     <div class="symbol"><i class="glyphicon glyphicon-wrench"></i></div>
+                     <div class="state-value" id="alarm_value">
+                       <div class="title">CONTROL</div>
+                       <div class="value"></div>
+                     </div>
+                     </div>
+                   </a>
+                 </div>
+               </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/highcharts.js"></script>
+    <script src="../js/Constant.js"></script>
+    <script src="../js/String.js"></script>
+    <script src="../js/Request.js"></script>
+    <script src="../js/Chart.js"></script>
+    <script src="../js/highcharts_theme.js"></script>
+    <script src="../js/Log.js"></script>
+    <script src="../js/Sidebar.js"></script>
+  </body>
+</html>
